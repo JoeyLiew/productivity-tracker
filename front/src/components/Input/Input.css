@@ -1,0 +1,41 @@
+.input__container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.input__label {
+  position: absolute;
+  top: 0.8rem;
+  left: 1rem;
+  transition: top 0.3s ease;
+}
+
+.input {
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: var(--grey);
+  outline: none;
+}
+
+.input:focus {
+  border-bottom: 3px solid white;
+}
+
+.input:focus ~ .input__label,
+.input:not(:placeholder-shown) ~ .input__label {
+  top: 0;
+  font-size: 0.8rem;
+}
+
+.input--error {
+  border: 1px solid var(--red) !important;
+}
+
+.input__error-message {
+  font-size: 0.8rem;
+  color: var(--red);
+  margin-top: 0.1rem;
+}

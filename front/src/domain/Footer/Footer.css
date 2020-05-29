@@ -1,0 +1,36 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  min-height: 4rem;
+  border-top: 3px solid var(--red);
+  background: var(--dark);
+}
+
+.footer__copyright {
+  display: flex;
+  align-items: center;
+}
+
+.footer__copyright-icon {
+  color: var(--red);
+  margin-right: 0.2rem;
+}
+
+.footer__copyright-text {
+  color: white;
+  font-size: 0.8rem;
+}
+
+.footer__socials {
+  font-size: 1.5rem;
+}
+
+.footer__socials > *:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.footer__social-icon {
+  color: var(--red);
+}

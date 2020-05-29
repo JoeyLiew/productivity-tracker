@@ -10,7 +10,7 @@ exports.register = async (formData) => {
   if (user.length > 0) {
     return {
       status: 'failure',
-      message: {
+      error: {
         email: 'Email is already registered.',
       },
     };
@@ -56,7 +56,7 @@ exports.login = async (formData) => {
   if (user.length === 0) {
     return {
       status: 'failure',
-      message: {
+      error: {
         general: 'Invalid credentials.',
       },
     };
@@ -66,7 +66,7 @@ exports.login = async (formData) => {
   if (!match) {
     return {
       status: 'failure',
-      message: {
+      error: {
         general: 'Invalid credentials.',
       },
     };
@@ -110,7 +110,7 @@ exports.refreshToken = async (refreshToken) => {
   if (user.length === 0) {
     return {
       status: 'failure',
-      message: {
+      error: {
         general: 'Invalid refresh token.',
       },
     };
@@ -142,7 +142,7 @@ exports.loadSession = async (refreshToken) => {
   if (user.length === 0) {
     return {
       status: 'failure',
-      message: {
+      error: {
         general: 'Invalid refresh token.',
       },
     };

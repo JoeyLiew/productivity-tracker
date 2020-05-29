@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Home.css';
 
 const Home = (props) => {
   return (
-    <div>
+    <main className='home'>
       <p>Home</p>
-    </div>
+    </main>
   );
 };
 

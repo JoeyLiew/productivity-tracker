@@ -7,7 +7,7 @@ exports.register = catchAsync(async (req, res, _next) => {
     user,
     accessToken,
     refreshToken,
-    message,
+    error,
   } = await users.register(req.body);
   if (status === 'success') {
     // Set refresh token as cookie.
@@ -22,19 +22,15 @@ exports.register = catchAsync(async (req, res, _next) => {
   } else {
     res.status(200).json({
       status,
-      message,
+      error,
     });
   }
 });
 
 exports.login = catchAsync(async (req, res, _next) => {
-  const {
-    status,
-    user,
-    accessToken,
-    refreshToken,
-    message,
-  } = await users.login(req.body);
+  const { status, user, accessToken, refreshToken, error } = await users.login(
+    req.body
+  );
   if (status === 'success') {
     // Set refresh token as cookie.
     res.cookie('rft', refreshToken);
@@ -48,7 +44,7 @@ exports.login = catchAsync(async (req, res, _next) => {
   } else {
     res.status(200).json({
       status,
-      message,
+      error,
     });
   }
 });
@@ -57,7 +53,7 @@ exports.logout = (_req, res) => {
   res.clearCookie('rft');
   res.status(200).json({
     status: 'success',
-    message: {
+    error: {
       general: 'User successfully logout.',
     },
   });
@@ -65,7 +61,7 @@ exports.logout = (_req, res) => {
 
 exports.refresh_token = catchAsync(async (req, res, _next) => {
   const { rft } = req.cookies;
-  const { status, data, message } = await users.refreshToken(rft);
+  const { status, data, error } = await users.refreshToken(rft);
   if (status === 'success') {
     res.status(200).json({
       status,
@@ -74,14 +70,14 @@ exports.refresh_token = catchAsync(async (req, res, _next) => {
   } else {
     res.status(200).json({
       status,
-      message,
+      error,
     });
   }
 });
 
 exports.load_session = catchAsync(async (req, res, _next) => {
   const { rft } = req.cookies;
-  const { status, data, message } = users.loadSession(rft);
+  const { status, data, error } = users.loadSession(rft);
   if (status === 'success') {
     res.status(200).json({
       status,
@@ -90,7 +86,7 @@ exports.load_session = catchAsync(async (req, res, _next) => {
   } else {
     res.status(200).json({
       status,
-      message,
+      error,
     });
   }
 });
