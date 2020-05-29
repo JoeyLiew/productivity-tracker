@@ -1,0 +1,28 @@
+.nav-link {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 0.1rem;
+  background: var(--red);
+}
+
+.nav-link:after {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: transform 0.2s ease, opacity 0.2s;
+}
+
+.nav-link--active.nav-link:after,
+.nav-link:hover.nav-link:after {
+  opacity: 1;
+  transform: translateY(-2px);
+}
