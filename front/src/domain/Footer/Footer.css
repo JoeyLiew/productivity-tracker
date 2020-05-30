@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
   min-height: 4rem;
+  padding: 0 2rem;
   border-top: 3px solid var(--red);
   background: var(--dark);
 }

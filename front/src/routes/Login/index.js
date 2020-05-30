@@ -1,14 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import './Login.css';
 
-const Login = (props) => {
-  return (
-    <div>
-      <p>Login</p>
-    </div>
-  );
+const Login = () => {
+  return <main className='login'></main>;
 };
-
-Login.propTypes = {};
 
 export default Login;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Register.css';
@@ -11,16 +11,17 @@ import { resetError } from '../../redux/error';
 const Register = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const error = useSelector((state) => state.error);
+  const errorRef = useRef();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  errorRef.current = useSelector((state) => state.error);
 
   useEffect(() => {
     // Reset error state when register component unmounts.
     return () => {
-      if (error) {
+      if (errorRef.current) {
         dispatch(resetError());
       }
     };
@@ -49,12 +50,6 @@ const Register = () => {
           alt='red lamp in darkness'
           className='register__image'
         />
-        <span className='register__image-text register__image-text--1'>
-          Don't wait.
-        </span>
-        <span className='register__image-text register__image-text--2'>
-          The time will never be just right.
-        </span>
       </div>
       <div className='register__form-container'>
         <h1 className='register__form-title'>Sign Up</h1>
@@ -64,28 +59,28 @@ const Register = () => {
             value={name}
             onChange={handleChange(setName)}
             label='Name'
-            error={error && error.name}
+            error={errorRef.current && errorRef.current.name}
           />
           <Input
             type='text'
             value={email}
             onChange={handleChange(setEmail)}
             label='E-mail'
-            error={error && error.email}
+            error={errorRef.current && errorRef.current.email}
           />
           <Input
             type='password'
             value={password}
             onChange={handleChange(setPassword)}
             label='Password'
-            error={error && error.password}
+            error={errorRef.current && errorRef.current.password}
           />
           <Input
             type='password'
             value={confirmPassword}
             onChange={handleChange(setConfirmPassword)}
             label='Confirm Password'
-            error={error && error.confirmPassword}
+            error={errorRef.current && errorRef.current.confirmPassword}
           />
           <Button type='submit' label='Register' />
         </form>
