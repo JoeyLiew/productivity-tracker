@@ -15,13 +15,14 @@
   font-size: 1rem;
   padding: 0.8rem 1rem;
   border: none;
-  border-bottom: 3px solid transparent;
+  border-radius: 3px;
+  border: 1px solid transparent;
   background: var(--grey);
   outline: none;
 }
 
 .input:focus {
-  border-bottom: 3px solid white;
+  border: 1px solid white;
 }
 
 .input:focus ~ .input__label,
@@ -31,7 +32,7 @@
 }
 
 .input--error {
-  border: 1px solid var(--red) !important;
+  border: 1px solid var(--red);
 }
 
 .input__error-message {

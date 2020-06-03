@@ -1,3 +1,67 @@
 .login {
   flex: 1;
+  display: flex;
+}
+
+.login__image-container {
+  position: relative;
+  width: 40vw;
+  border-left: 3px solid white;
+}
+
+.login__image-container:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.login__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login__form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--dark);
+}
+
+.login__form-container > * {
+  margin-bottom: 1rem;
+}
+
+.login__form-title {
+  color: var(--red);
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__form > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.login__register-tip {
+  font-size: 0.8rem;
+  color: white;
+}
+
+.login__register-text {
+  margin-right: 0.3rem;
+}
+
+.login__register-link {
+  font-weight: 700;
+  color: var(--red);
+  text-decoration: none;
 }

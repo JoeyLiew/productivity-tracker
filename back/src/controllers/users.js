@@ -50,10 +50,11 @@ exports.login = catchAsync(async (req, res, _next) => {
 });
 
 exports.logout = (_req, res) => {
+  // Clear refresh token in cookies.
   res.clearCookie('rft');
   res.status(200).json({
     status: 'success',
-    error: {
+    message: {
       general: 'User successfully logout.',
     },
   });

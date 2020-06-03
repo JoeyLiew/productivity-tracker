@@ -36,6 +36,30 @@ const schemas = {
       error,
     };
   },
+  login: (formData) => {
+    const error = {};
+    ['email', 'password'].forEach((key) => {
+      if (!isString(formData[key])) {
+        formData[key] = '';
+      }
+    });
+    if (!validator.isEmail(formData.email)) {
+      error.email = 'E-mail is invalid';
+    }
+    if (validator.isEmpty(formData.email)) {
+      error.email = 'E-mail is required';
+    }
+    if (!validator.isLength(formData.password, { min: 6 })) {
+      error.password = 'Password requires minimum 6 characters';
+    }
+    if (validator.isEmpty(formData.password)) {
+      error.password = 'Password is required';
+    }
+    return {
+      isValid: Object.keys(error).length === 0,
+      error,
+    };
+  },
 };
 
 export default schemas;

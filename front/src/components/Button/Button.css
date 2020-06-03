@@ -4,6 +4,7 @@
   color: white;
   padding: 1rem;
   border: 1px solid var(--red);
+  border-radius: 3px;
   background: var(--red);
   outline: none;
 }
