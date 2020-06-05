@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import { FaExclamation } from 'react-icons/fa';
 import Train from '../../media/images/train.jpeg';
 import './Login.css';
 import Input from '../../components/Input';
@@ -23,7 +24,7 @@ const Login = () => {
         dispatch(resetError());
       }
     };
-  }, []);
+  }, [dispatch]);
 
   const handleChange = (fn) => (event) => fn(event.target.value);
 
@@ -42,6 +43,14 @@ const Login = () => {
     <main className='login'>
       <div className='login__form-container'>
         <h1 className='login__form-title'>Sign In</h1>
+        {errorRef.current && errorRef.current.general && (
+          <div className='login__error-message'>
+            <FaExclamation className='login__error-icon' />
+            <span className='login__error-text'>
+              {errorRef.current.general}
+            </span>
+          </div>
+        )}
         <form className='login__form' onSubmit={handleSubmit}>
           <Input
             type='text'
@@ -59,6 +68,12 @@ const Login = () => {
           />
           <Button type='submit' label='Login' />
         </form>
+        <div className='login__register-tip'>
+          <span className='login__register-text'>New to us?</span>
+          <Link to='/register' className='login__register-link'>
+            Register
+          </Link>
+        </div>
       </div>
       <div className='login__image-container'>
         <img src={Train} alt='dark road' className='login__image' />

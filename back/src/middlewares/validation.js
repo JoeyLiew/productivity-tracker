@@ -29,6 +29,12 @@ const schemas = {
   refreshToken: Joi.object({
     rft: Joi.string().required(),
   }),
+  taskId: Joi.object({
+    task_id: Joi.number().required(),
+  }),
+  taskCreate: Joi.object({
+    description: Joi.string().required(),
+  }),
 };
 
 module.exports = {

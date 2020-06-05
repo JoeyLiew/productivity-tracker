@@ -1,0 +1,14 @@
+.tasks {
+  display: flex;
+  flex-direction: column;
+}
+
+.tasks__form {
+  display: flex;
+}
+
+.tasks__input {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+}

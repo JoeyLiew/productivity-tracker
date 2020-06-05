@@ -7,27 +7,40 @@ const REGISTER_FAILURE = 'REGISTER_FAILURE';
 const LOGIN_REQUEST = 'LOGIN_REQUEST';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAILURE = 'LOGIN_FAILURE';
+const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
+const LOAD_SESSION_REQUEST = 'LOAD_SESSION_REQUEST';
+const LOAD_SESSION_SUCCESS = 'LOAD_SESSION_SUCCESS';
+const LOAD_SESSION_FAILURE = 'LOAD_SESSION_FAILURE';
 
+const initialState = { user: null, isFetching: false, isAuth: false };
 // Reducer
-export default (
-  state = { user: null, isFetching: false, isAuth: false },
-  action
-) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case REGISTER_REQUEST:
     case LOGIN_REQUEST:
+    case LOAD_SESSION_REQUEST:
+    case LOGOUT_REQUEST:
       return {
         ...state,
         isFetching: true,
       };
     case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
+    case LOAD_SESSION_SUCCESS:
       return {
         ...state,
         isFetching: false,
         isAuth: true,
         user: action.session,
       };
+    case LOGOUT_SUCCESS:
+      return initialState;
     case REGISTER_FAILURE:
+    case LOGIN_FAILURE:
+    case LOAD_SESSION_FAILURE:
+    case LOGOUT_FAILURE:
       return {
         ...state,
         isFetching: false,
@@ -63,6 +76,33 @@ const loginSuccess = (session) => ({
 
 const loginFailure = (error) => ({
   type: LOGIN_FAILURE,
+  error,
+});
+
+const logoutRequest = () => ({
+  type: LOGOUT_REQUEST,
+});
+
+const logoutSuccess = () => ({
+  type: LOGOUT_SUCCESS,
+});
+
+const logoutFailure = (error) => ({
+  type: LOGOUT_FAILURE,
+  error,
+});
+
+const loadSessionRequest = () => ({
+  type: LOAD_SESSION_REQUEST,
+});
+
+const loadSessionSuccess = (session) => ({
+  type: LOAD_SESSION_SUCCESS,
+  session,
+});
+
+const loadSessionFailure = (error) => ({
+  type: LOAD_SESSION_FAILURE,
   error,
 });
 
@@ -115,7 +155,7 @@ export const login = (formData, history) => async (dispatch) => {
       return dispatch(loginFailure(validationResult.error));
     }
     // Send POST request with body to login endpoint.
-    const res = await fetch('/api/login', {
+    const res = await fetch('/api/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -169,6 +209,7 @@ export const loadSession = () => async (dispatch) => {
     // Get access token from local storage.
     const accessToken = localStorage.getItem('act');
     if (!accessToken) {
+      dispatch(logout());
       return dispatch(loadSessionFailure());
     }
     const res = await fetch('/api/users/load_session', {

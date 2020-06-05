@@ -65,3 +65,22 @@
   color: var(--red);
   text-decoration: none;
 }
+
+.login__error-message {
+  display: flex;
+  align-items: center;
+  color: var(--red);
+  background: var(--light-red);
+  padding: 1rem;
+  border-radius: 3px;
+}
+
+.login__error-text {
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.login__error-icon {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}

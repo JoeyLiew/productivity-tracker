@@ -25,7 +25,7 @@ const Register = () => {
         dispatch(resetError());
       }
     };
-  }, []);
+  }, [dispatch]);
 
   const handleChange = (fn) => (event) => fn(event.target.value);
 

@@ -77,17 +77,11 @@ exports.refresh_token = catchAsync(async (req, res, _next) => {
 });
 
 exports.load_session = catchAsync(async (req, res, _next) => {
-  const { rft } = req.cookies;
-  const { status, data, error } = users.loadSession(rft);
-  if (status === 'success') {
-    res.status(200).json({
-      status,
-      data,
-    });
-  } else {
-    res.status(200).json({
-      status,
-      error,
-    });
-  }
+  const { password: omit, ...rest } = req.user;
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: rest,
+    },
+  });
 });

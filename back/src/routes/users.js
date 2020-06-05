@@ -11,8 +11,8 @@ router.post('/login', validate(schemas.login, 'body'), users.login);
 router.get('/logout', users.logout);
 router.get(
   '/refresh_token',
-  cookieParser(),
   validate(schemas.refreshToken, 'cookies'),
+  cookieParser(),
   users.refresh_token
 );
 router.get('/load_session', private, users.load_session);

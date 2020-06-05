@@ -4,12 +4,7 @@ import { NavLink } from 'react-router-dom';
 import './NavigationLink.css';
 
 const NavigationLink = ({ to, label }) => (
-  <NavLink
-    exact
-    to={to}
-    className='nav-link'
-    activeClassName='nav-link--active'
-  >
+  <NavLink to={to} className='nav-link' activeClassName='nav-link--active'>
     {label}
   </NavLink>
 );

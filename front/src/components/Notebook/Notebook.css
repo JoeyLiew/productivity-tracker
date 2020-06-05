@@ -1,0 +1,37 @@
+.list {
+  color: #555;
+  font-size: 22px;
+  background: white;
+  padding: 0;
+  border: 1px solid #dedede;
+  position: relative;
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+.list li {
+  list-style: none;
+  border-bottom: 1px dotted #ccc;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 10px 5px 10px 50px;
+  text-transform: capitalize;
+}
+
+.list li:hover {
+  background-color: #eee;
+  transition: 0.2s;
+}
+
+.list li:last-child {
+  border-bottom: 0;
+}
+.list:before {
+  content: '';
+  border-left: 1px solid #ffaa9f;
+  border-right: 1px solid #ffaa9f;
+  width: 2px;
+  position: absolute;
+  height: 100%;
+  left: 25px;
+}

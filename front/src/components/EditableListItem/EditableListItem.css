@@ -1,0 +1,11 @@
+.editable-list-item__input {
+  color: #555;
+  font-size: 22px;
+  border: none;
+  width: 100%;
+}
+
+.editable-list-item__button {
+  border: none;
+  background: transparent;
+}
