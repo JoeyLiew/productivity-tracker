@@ -1,6 +1,9 @@
 .tasks {
   display: flex;
   flex-direction: column;
+  width: 80vw;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .tasks__form {
@@ -11,4 +14,8 @@
   flex: 1;
   padding: 0.5rem;
   border: none;
+}
+
+.task__form-button {
+  border-radius: 0;
 }

@@ -44,6 +44,7 @@ exports.update = catchAsync(async (req, res, _next) => {
     req.user.id,
     req.body
   );
+  console.log('Data', req.body);
   if (status === 'success') {
     res.status(200).json({
       status,

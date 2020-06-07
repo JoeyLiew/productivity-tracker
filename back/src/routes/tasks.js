@@ -11,6 +11,6 @@ router
   .post(validate(schemas.taskCreate, 'body'), tasks.create)
   .delete(tasks.delete);
 router.post('/get', tasks.read);
-router.put('/:task_id', validate(schemas.taskId, 'params'), tasks.update);
+router.patch('/:task_id', validate(schemas.taskId, 'params'), tasks.update);
 
 module.exports = router;

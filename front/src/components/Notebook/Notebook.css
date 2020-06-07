@@ -7,25 +7,14 @@
   position: relative;
   box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
   margin: 0;
-}
-.list li {
-  list-style: none;
-  border-bottom: 1px dotted #ccc;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  padding: 10px 5px 10px 50px;
-  text-transform: capitalize;
-}
-
-.list li:hover {
-  background-color: #eee;
-  transition: 0.2s;
+  overflow-y: scroll;
+  max-height: 70vh;
 }
 
 .list li:last-child {
   border-bottom: 0;
 }
+
 .list:before {
   content: '';
   border-left: 1px solid #ffaa9f;

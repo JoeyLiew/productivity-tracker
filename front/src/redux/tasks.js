@@ -22,6 +22,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case GET_TASKS_REQUEST:
     case CREATE_TASK_REQUEST:
+    case UPDATE_TASK_REQUEST:
       return {
         ...state,
         isFetching: true,
@@ -36,7 +37,15 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        items: [...state.items, action.task],
+        items: [action.task, ...state.items],
+      };
+    case UPDATE_TASK_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        items: state.items.map((item) =>
+          item.id === action.task.id ? action.task : item
+        ),
       };
     case GET_TASKS_FAILURE:
     case CREATE_TASK_FAILURE:
@@ -177,7 +186,7 @@ export const updateTask = (taskId, formData) => async (dispatch) => {
       return dispatch(createTaskFailure('No access token found.'));
     }
     const res = await fetch(`/api/tasks/${taskId}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         authorization: `Bearer ${accessToken}`,
@@ -188,6 +197,7 @@ export const updateTask = (taskId, formData) => async (dispatch) => {
     if (res.ok) {
       if (status === 'success') {
         dispatch(updateTaskSuccess(data.task));
+        console.log('Updated task: ', data.task);
       } else {
         dispatch(updateTaskFailure(error));
       }

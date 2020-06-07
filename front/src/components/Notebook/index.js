@@ -7,7 +7,12 @@ const Notebook = ({ tasks }) => {
   return (
     <ul className='list'>
       {tasks.map((task) => (
-        <EditableListItem key={task.id} id={task.id} value={task.description} />
+        <EditableListItem
+          key={task.id}
+          id={task.id}
+          description={task.description}
+          completed={task.completed}
+        />
       ))}
     </ul>
   );

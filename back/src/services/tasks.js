@@ -20,7 +20,10 @@ exports.create = async (data) => {
 exports.read = async (data) => {
   try {
     console.log('Data', data);
-    const tasks = await database('tasks').select().where(data);
+    const tasks = await database('tasks')
+      .select()
+      .where(data)
+      .orderBy('created_at', 'desc');
     return {
       status: 'success',
       data: {
@@ -39,6 +42,7 @@ exports.update = async (taskId, userId, data) => {
   try {
     const task = await database('tasks')
       .update(data)
+      .update('updated_at', database.fn.now())
       .where({ id: taskId, user_id: userId })
       .returning('*');
     if (task.length === 0) {

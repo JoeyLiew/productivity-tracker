@@ -40,7 +40,11 @@ const Tasks = () => {
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
-          <Button type='submit' label='Add Task' />
+          <Button
+            type='submit'
+            label='Add Task'
+            className='task__form-button'
+          />
         </form>
       )}
       <Notebook tasks={tasks} />

@@ -1,3 +1,24 @@
+.editable-list-item {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  border-bottom: 1px dotted #ccc;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 10px 5px 10px 2px;
+  text-transform: capitalize;
+}
+
+.editable-list-item:hover {
+  background-color: #eee;
+  transition: 0.2s;
+}
+
+.editable-list-item > *:first-child {
+  margin-right: 1rem;
+}
+
 .editable-list-item__input {
   color: #555;
   font-size: 22px;
